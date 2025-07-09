@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/", (req, res) => res.send("Backend running..."));
+// app.use("/", (req, res) => res.send("Backend running..."));
 app.use("/api/users", userRoutes);
 app.use("/api/entries", dataEntryRoutes);
 
