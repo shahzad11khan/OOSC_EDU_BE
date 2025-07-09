@@ -14,8 +14,8 @@ app.use(express.json());
 
 // Routes
 app.use("/", (req, res) => res.send("Backend running..."));
-app.use("/api/entries", dataEntryRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/entries", dataEntryRoutes);
 
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
 

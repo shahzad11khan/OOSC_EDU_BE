@@ -4,18 +4,18 @@ const dataEntryController = require("../controllers/dataEntryController");
 const authMiddleware = require("../middleware/authMiddleware");
 
 // Create a new entry
-router.post("/", authMiddleware, dataEntryController.createEntry);
+router.post("/create", authMiddleware, dataEntryController.createEntry);
 
 // Get all entries for logged-in user
-router.get("/", authMiddleware, dataEntryController.getAllEntries);
+router.get("/getAll", authMiddleware, dataEntryController.getAllEntries);
 
 // Get one entry by ID
-router.get("/:id", authMiddleware, dataEntryController.getEntryById);
+router.get("/getById/:id", authMiddleware, dataEntryController.getEntryById);
 
 // Update an entry by ID
-router.put("/:id", authMiddleware, dataEntryController.updateEntry);
+router.put("/updateById/:id", authMiddleware, dataEntryController.updateEntry);
 
 // Delete an entry by ID
-router.delete("/:id", authMiddleware, dataEntryController.deleteEntry);
+router.delete("/deleteById/:id", authMiddleware, dataEntryController.deleteEntry);
 
 module.exports = router;
