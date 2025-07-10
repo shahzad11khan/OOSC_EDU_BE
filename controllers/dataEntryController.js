@@ -40,19 +40,49 @@ exports.getEntryById = async (req, res) => {
 // Update entry
 exports.updateEntry = async (req, res) => {
   try {
-    const updatedEntry = await DataEntry.findByIdAndUpdate(
-      req.params.id,
-      { ...req.body },
-      { new: true }
-    );
-    if (!updatedEntry) {
+    const {
+      district,
+      totalChildren,
+      outOfSchoolChildren,
+      girlsPercentage,
+      boysPercentage,
+      povertyPercentage,
+      disabilityPercentage,
+      otherPercentage,
+      programType,
+      date,
+    } = req.body;
+
+    const existingEntry = await DataEntry.findById(req.params.id);
+    if (!existingEntry) {
       return res.status(404).json({ message: "Entry not found" });
     }
+
+    const updatedFields = {
+      district: district || existingEntry.district,
+      totalChildren: totalChildren ?? existingEntry.totalChildren,
+      outOfSchoolChildren: outOfSchoolChildren ?? existingEntry.outOfSchoolChildren,
+      girlsPercentage: girlsPercentage ?? existingEntry.girlsPercentage,
+      boysPercentage: boysPercentage ?? existingEntry.boysPercentage,
+      povertyPercentage: povertyPercentage ?? existingEntry.povertyPercentage,
+      disabilityPercentage: disabilityPercentage ?? existingEntry.disabilityPercentage,
+      otherPercentage: otherPercentage ?? existingEntry.otherPercentage,
+      programType: programType || existingEntry.programType,
+      date: date || existingEntry.date,
+    };
+
+    const updatedEntry = await DataEntry.findByIdAndUpdate(
+      req.params.id,
+      updatedFields,
+      { new: true }
+    );
+
     res.status(200).json(updatedEntry);
   } catch (error) {
     res.status(500).json({ message: "Error updating entry", error });
   }
 };
+
 
 // Delete entry
 exports.deleteEntry = async (req, res) => {
