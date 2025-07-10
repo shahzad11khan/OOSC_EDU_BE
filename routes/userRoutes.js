@@ -10,4 +10,7 @@ router.get("/me", authMiddleware, userController.getMe);
 router.put("/update", authMiddleware, userController.updateUser);
 router.put("/delete/:id", authMiddleware, userController.deleteUser);
 
+router.post("/forgot-password", userController.sendOTP);
+router.post("/reset-password", userController.resetPassword);
+
 module.exports = router;
