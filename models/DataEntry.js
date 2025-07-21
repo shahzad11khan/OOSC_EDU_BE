@@ -16,6 +16,12 @@ const DataEntry = new mongoose.Schema({
   otherPercentage: Number,
   programType: String,
   date: String,
+ tehsil: String,
+ unioncouncil: String,
+ villagecouncil: String,
+ pk: String,
+ national: String,
+ location: String
 });
 
 module.exports = mongoose.model("DataEntry", DataEntry);

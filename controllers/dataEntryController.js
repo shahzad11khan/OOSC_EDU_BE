@@ -50,6 +50,12 @@ exports.updateEntry = async (req, res) => {
       disabilityPercentage,
       otherPercentage,
       programType,
+      tehsil,
+      unioncouncil,
+      villagecouncil,
+      pk,
+      national,
+      location,
       date,
     } = req.body;
 
@@ -69,6 +75,12 @@ exports.updateEntry = async (req, res) => {
       otherPercentage: otherPercentage ?? existingEntry.otherPercentage,
       programType: programType || existingEntry.programType,
       date: date || existingEntry.date,
+      tehsil: tehsil || existingEntry.tehsil,
+      unioncouncil: unioncouncil || existingEntry.unioncouncil,
+      villagecouncil: villagecouncil || existingEntry.villagecouncil,
+      pk: pk || existingEntry.pk,
+      national: national || existingEntry.national,
+      location: location || existingEntry.location
     };
 
     const updatedEntry = await DataEntry.findByIdAndUpdate(

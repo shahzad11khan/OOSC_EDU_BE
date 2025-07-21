@@ -7,7 +7,7 @@ const crypto = require("crypto");
 // Register new user
 exports.registerUser = async (req, res) => {
   try {
-    const { name, email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword,role,status } = req.body;
 
     if (password !== confirmPassword) {
       return res.status(400).json({ message: "Passwords do not match" });
@@ -18,9 +18,9 @@ exports.registerUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = await User.create({ name, email, password: hashedPassword, confirmPassword });
+    const newUser = await User.create({ name, email, password: hashedPassword, confirmPassword,role,status });
 
-    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+    const token = jwt.sign({ id: newUser._id, name, email, role, status }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
     res.status(201).json({ user: { id: newUser._id, name, email }, token });
   } catch (error) {
