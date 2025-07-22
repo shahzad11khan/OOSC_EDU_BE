@@ -21,7 +21,8 @@ const DataEntry = new mongoose.Schema({
  villagecouncil: String,
  pk: String,
  national: String,
- location: String
+ log: String,
+ lat: String
 });
 
 module.exports = mongoose.model("DataEntry", DataEntry);

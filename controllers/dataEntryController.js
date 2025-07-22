@@ -55,7 +55,8 @@ exports.updateEntry = async (req, res) => {
       villagecouncil,
       pk,
       national,
-      location,
+      log,
+      lat,
       date,
     } = req.body;
 
@@ -80,7 +81,8 @@ exports.updateEntry = async (req, res) => {
       villagecouncil: villagecouncil || existingEntry.villagecouncil,
       pk: pk || existingEntry.pk,
       national: national || existingEntry.national,
-      location: location || existingEntry.location
+      log: log || existingEntry.log,
+      lat: lat || existingEntry.lat,
     };
 
     const updatedEntry = await DataEntry.findByIdAndUpdate(
