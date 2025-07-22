@@ -80,7 +80,7 @@ exports.updateUser = async (req, res) => {
       updatedFields.password = user.password;
     }
 
-    const updatedUser = await User.findByIdAndUpdate(req.user.id, updatedFields, { new: true });
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, updatedFields, { new: true });
     res.status(200).json(updatedUser);
   } catch (error) {
     res.status(500).json({ message: "Failed to update user", error });
