@@ -8,7 +8,7 @@ router.post("/login", userController.loginUser);
 // router.get("/getAllUsers", authMiddleware, userController.getAllUsers);
 router.get("/getAllUsers", userController.getAllUsers);
 router.get("/me", authMiddleware, userController.getMe);
-router.put("/update", authMiddleware, userController.updateUser);
+router.put("/update/:id", authMiddleware, userController.updateUser);
 router.put("/delete/:id", authMiddleware, userController.deleteUser);
 
 router.post("/forgot-password", userController.sendOTP);

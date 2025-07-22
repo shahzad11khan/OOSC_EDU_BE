@@ -60,15 +60,17 @@ exports.getMe = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const { name, email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword,role,status } = req.body;
 
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.params.id);
     if (!user) return res.status(404).json({ message: "User not found" });
 
     let updatedFields = {
       name: name || user.name,
       email: email || user.email,
       confirmPassword: confirmPassword || user.confirmPassword,
+      role: role || user.role,
+      status: status || user.status
     };
 
     if (password) {
