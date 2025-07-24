@@ -58,6 +58,9 @@ exports.updateEntry = async (req, res) => {
       log,
       lat,
       date,
+      age,
+      totalTeachers,
+      requiredFaculty
     } = req.body;
 
     const existingEntry = await DataEntry.findById(req.params.id);
@@ -83,6 +86,9 @@ exports.updateEntry = async (req, res) => {
       national: national || existingEntry.national,
       log: log || existingEntry.log,
       lat: lat || existingEntry.lat,
+      age: age || existingEntry.age,
+      totalTeachers: totalTeachers || existingEntry.totalTeachers,
+      requiredFaculty: requiredFaculty || existingEntry.requiredFaculty
     };
 
     const updatedEntry = await DataEntry.findByIdAndUpdate(

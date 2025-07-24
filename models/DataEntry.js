@@ -22,7 +22,10 @@ const DataEntry = new mongoose.Schema({
  pk: String,
  national: String,
  log: String,
- lat: String
+ lat: String,
+ age:Number,
+ totalTeachers:Number,
+ requiredFaculty:Number, // Number of teachers required for the childre
 });
 
 module.exports = mongoose.model("DataEntry", DataEntry);
