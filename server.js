@@ -21,7 +21,7 @@ app.get('/swagger.json',(req,res)=>{
 })
 
 
-app.get('api-docs',(req,res)=>{
+app.get('/api-docs',(req,res)=>{
     res.setHeader('Content-Type', 'text/html');
     res.send(CustomuiHTML);
 })
