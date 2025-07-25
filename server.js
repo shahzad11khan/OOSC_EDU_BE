@@ -4,6 +4,8 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const dataEntryRoutes = require("./routes/dataEntryRoutes");
 const userRoutes = require("./routes/userRoutes");
+const AppSwagger = require("./Appswagger");
+const CustomuiHTML = require("./CustomuiHTMl");
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -11,6 +13,18 @@ connectDB();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.get('/swagger.json',(req,res)=>{
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.send(AppSwagger);
+})
+
+
+app.get('api-docs',(req,res)=>{
+    res.setHeader('Content-Type', 'text/html');
+    res.send(CustomuiHTML);
+})
 
 // Routes
 // app.use("/", (req, res) => res.send("Backend running..."));
