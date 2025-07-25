@@ -9,7 +9,7 @@ const swaggeroptions = {
         },
         servers: [
             {
-                url: "https://oosc.onrender.com",
+                url: "https://oosc-edu-be.vercel.app",
                 description: "Production server",
             },
             {
