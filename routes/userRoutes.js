@@ -28,7 +28,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 // create a new user
 /**
  * @swagger
- * /register:
+ * /api/users/register:
  *   post:
  *     summary: Create a new user
  *     tags: [Users]
@@ -51,7 +51,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 router.post("/register", userController.registerUser);
 /**
  * @swagger
- * /login:
+ * /api/users/login:
  *   post:
  *     summary: Login a user
  *     tags: [Users]
@@ -99,7 +99,7 @@ router.post("/login", userController.loginUser);
 // router.get("/getAllUsers", authMiddleware, userController.getAllUsers);
 /**
  * @swagger
- * /getAllUsers:
+ * /api/users/getAllUsers:
  *   get:
  *     summary: Get all users
  *     tags: [Users]
