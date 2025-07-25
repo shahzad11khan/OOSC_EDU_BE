@@ -60,25 +60,42 @@ router.post("/register", userController.registerUser);
  *       content:
  *         application/json:
  *           schema:
- * type: object
- * required:
- *   - email
- *   - password
- * properties:
- *   email:
- *     type: string
- *     description: The email of the user
- *   password:
- *     type: string
- *     description: The password of the user
- 
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: The email of the user
+ *               password:
+ *                 type: string
+ *                 description: The password of the user
  *     responses:
  *       200:
  *         description: User logged in successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: 64ee347f2c8a3e001c5e1f29
+ *                     name:
+ *                       type: string
+ *                       example: John Doe
+ *                     email:
+ *                       type: string
+ *                       example: johndoe@example.com
  *       400:
- *         description: Bad request
+ *         description: Bad request - invalid email or password
  */
 router.post("/login", userController.loginUser);
+
 // router.get("/getAllUsers", authMiddleware, userController.getAllUsers);
 /**
  * @swagger
