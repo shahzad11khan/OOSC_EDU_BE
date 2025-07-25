@@ -4,8 +4,10 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const dataEntryRoutes = require("./routes/dataEntryRoutes");
 const userRoutes = require("./routes/userRoutes");
+const toggleRoutes = require("./routes/toggleRoutes");
 const AppSwagger = require("./Appswagger");
 const CustomuiHTML = require("./CustomuiHTMl");
+const allApiToggleMiddleware = require("./trubbleshoot/apiToggleMiddleware");
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -27,6 +29,8 @@ app.get('/api-docs',(req,res)=>{
 })
 
 // Routes
+app.use("/control", toggleRoutes);
+app.use(allApiToggleMiddleware);
 // app.use("/", (req, res) => res.send("Backend running..."));
 app.use("/api/users", userRoutes);
 app.use("/api/entries", dataEntryRoutes);
