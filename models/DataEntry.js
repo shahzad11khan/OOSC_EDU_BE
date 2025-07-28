@@ -25,7 +25,7 @@ const DataEntry = new mongoose.Schema({
  lat: String,
  age:Number,
  totalTeachers:Number,
- schoolType:Number,
+ schoolType:String,
  requiredFaculty:Number, // Number of teachers required for the childre
 });
 
