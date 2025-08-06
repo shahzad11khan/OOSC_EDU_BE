@@ -17,9 +17,9 @@ const swaggeroptions = {
                 description: "Local server",
             }
         ],
-        
+
     },
-    
+
     apis: ["./routes/*.js"],
 };
 const swaggerSpec = swaggerjsdoc(swaggeroptions);

@@ -22,7 +22,7 @@ const authMiddleware = require("../middleware/authMiddleware");
  *   User:
  *     name: John Doe
  *     email: 1oL0T@example.com
- * 
+ *
  */
 
 // create a new user
@@ -116,11 +116,140 @@ router.post("/login", userController.loginUser);
  *         description: Internal server error
  */
 router.get("/getAllUsers", userController.getAllUsers);
+
+// Get current user
+/**
+ * @swagger
+ * /api/users/me:
+ *   get:
+ *     summary: Get current user
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: User fetched successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       500:
+ *         description: Internal server error
+ */
 router.get("/me", authMiddleware, userController.getMe);
+
+// Update user
+/**
+ * @swagger
+ * /api/users/update/{id}:
+ *   put:
+ *     summary: Update user
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the user
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+*           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       500:
+ *         description: Internal server error
+ */
 router.put("/update/:id", authMiddleware, userController.updateUser);
+
+// Delete user
+/**
+ * @swagger
+ * /api/users/delete/{id}:
+ *   delete:
+ *     summary: Delete user
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the user
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User deleted successfully
+ *       500:
+ *         description: Internal server error
+ */
 router.put("/delete/:id", authMiddleware, userController.deleteUser);
 
+// Forgot password
+/**
+ * @swagger
+ * /api/users/forgot-password:
+ *   post:
+ *     summary: Send OTP for password reset
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: The email of the user
+*     responses:
+ *       200:
+ *         description: OTP sent successfully
+ *       500:
+ *         description: Internal server error
+ */
 router.post("/forgot-password", userController.sendOTP);
+
+// Reset password
+/**
+ * @swagger
+ * /api/users/reset-password:
+ *   post:
+ *     summary: Reset password
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - otp
+ *               - newPassword
+ *               - confirmPassword
+ *             properties:
+ *               otp:
+ *                 type: string
+*                 description: OTP sent to the user's email
+ *               newPassword:
+ *                 type: string
+ *                 description: The new password of the user
+ *               confirmPassword:
+ *                 type: string
+ *                 description: The new password of the user
+ *     responses:
+ *       200:
+ *         description: Password reset successfully
+ *       500:
+ *         description: Internal server error
+ */
 router.post("/reset-password", userController.resetPassword);
 
 module.exports = router;
