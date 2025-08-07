@@ -29,3 +29,5 @@ coverage/
 # Optional: ignore uploads/temp folders (if not version-controlled)
 uploads/
 tmp/
+
+.early.coverage
